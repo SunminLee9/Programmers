@@ -1,0 +1,17 @@
+def solution(n, lost, reserve):
+    
+    setLost = set(lost) - set(reserve)             
+    setReserve=  set(reserve) - set(lost)  
+    answer = n-len(setLost)
+
+    for i in setReserve:
+            left = i-1
+            right = i+1
+            if left in setLost:
+                answer=answer+1
+            elif right in setLost:
+                answer = answer +1
+    if answer > n:
+            answer = n
+            
+    return answer
