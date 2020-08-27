@@ -1,0 +1,11 @@
+def solution(array, commands):
+    answer = []
+    cut=[]
+    
+    for i in range(len(commands)):  #i = 0,1,2
+       # for j in range(len(commands)): #j=0,1,2   for 구문 j 하나 더 만들지 않아도 된다. 
+        cut=array[commands[i][0]-1:commands[i][1]]  # -1해주는 이유: command의 인덱스는 0부터 시작인데 위의 문제에서는 1부터 시작해서
+        cut.sort()
+        answer.append(cut[commands[i][2]-1])
+        
+    return answer
