@@ -1,0 +1,16 @@
+def solution(people, limit):
+   answer =0
+   people.sort()  #가벼운 사람들 - 무거운사람들 정렬 
+  
+   light=0   #처음 인덱스
+   heavy=len(people)-1  #마지막 인덱스
+   count=0   # 짝지어진 그룹 수
+  
+   while light < heavy :  
+       if people[light] + people[heavy] <= limit :# 가벼운사람과 무거운사람의 합이 limit값 이하이면
+           count = count + 1 #짝지어진 그룹 수 1 증가
+           light = light + 1 #그다음으로 가벼운 인덱스
+           heavy = heavy - 1 #그다음으로 무거운 인덱스
+       else:
+           heavy = heavy - 1 #짝이 지어지지 않아 그 다음으로 무거운 인덱스로
+   return len(people) - count  #전체인원수-짝지어진 그룹수 = 구명보트 사용 횟수
