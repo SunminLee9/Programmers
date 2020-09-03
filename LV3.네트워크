@@ -1,0 +1,28 @@
+#DFS = Depth First Search 깊이 우선 탐색, 깊이 들어가 탐색. 스택 자료구조(or 재귀함수)이용.  
+#BFS Breadth First Search 너비우선 탐색, 깊이 들어가지 않고 먼저 둘러본 후 안에 들어감.
+#DFS원리
+#1. 탐색 시작 노드를 스택에 삽입하고 방문처리 한다.
+#2. 스택의 최상단 노드 즉 시작 노드에 방문하지 않은 인접한 노드가 하나라도 있으면 그 노드를 스택에 넣고 방문처리 한다. 방문하지 않은 인접노드가 없으면 스택에서 최상단노드를 꺼낸다.
+#3. 더이상 2번 과정을 수행할 수 없을 때까지 반복한다.
+
+def solution(n, computers):
+    answer = 0
+    visited = [0]*n    #방문하지 않는 노드 [0,0,0]으로 설정
+    start = 0
+    while 0 in visited: #방문하지 안했을 동안에
+        if visited[start] ==0:     
+            dfs(computers, visited, start) #dfs호출
+            answer +=1
+        start+=1
+  
+    return answer
+  
+def dfs(computers, visited, start):  #dfs 메서드 정의
+      record = [start]  #노드0 record=[0]. #노드1 record=[1] 노드2 record=[2]
+        while record:
+            j = record.pop()  #j=0 j=1 j=2
+            if visited[j] == 0:
+                visited[j] = 1 #방문하지않았으면 방문을 1로 바꾸어줌 visited=[1,0,0] visited=[1,1,0] visited=[1,1,2]
+            for i in range(0, len(computers)):
+                if computers[j][i] ==1 and visited[i] == 0: #노드0의0번째~2번째가 1이고 visit0~2번째가 동시에 0이면, 노드1의 0~2 
+                    record.append(i) #record=[0,1]  #스택에 0,1 삽입됨. 의문점) 1은 방문하지 않은 인접노드가 없기에 스택에서 꺼내져야하는게 아닌지의 여부
