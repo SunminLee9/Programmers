@@ -1,0 +1,32 @@
+def dfs(start, tickets, result):
+    if len(tickets) == 0:
+        return result
+    for i,ticket in enumerate(tickets):
+        
+        
+        if start == ticket[0]:  #시작한 장소 = ticket의 출발장소이면
+            end = ticket[1]    #end에 그 ticket의 도착장소 "JFK" 넣기 -> "HND" -> "IAD"
+            tickets.pop(i)     #완료된 장소 지우기 [["ICN", "JFK"]] -> ["JFK", "HND"]  -> ["HND", "IAD"]
+                               #tickets = [['HND', 'IAD'], ['JFK', 'HND']]  ->  ["HND", "IAD"] -> []
+            result.append(end)  #result= ['ICN', 'JFK'] ->['ICN', 'JFK', 'HND'] ->['ICN', 'JFK', 'HND', 'IAD']
+            temp = dfs(end,tickets, result)  #DFS
+            
+            if len(temp)!=0:
+                return temp
+              
+            result.pop(len(result)-1)  
+            tickets.insert(i,[start,end])    
+
+    return []
+
+
+def solution(tickets):
+    tickets.sort()
+    result = []
+    start = "ICN"
+    result.append(start)  #['ICN']
+    
+    answer = dfs(start, tickets, result)   #DFS 호출
+    return answer
+
+print(solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]))
