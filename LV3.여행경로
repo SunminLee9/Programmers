@@ -1,3 +1,4 @@
+#DFS사용
 def dfs(start, tickets, result):
     if len(tickets) == 0:
         return result
