@@ -1,0 +1,7 @@
+def solution(arr):
+      
+       if len(arr)>=2:    #2개이상   
+           arr.remove((min(arr)))  # arr.pop(min(arr)) 하면 min값이 pop되지 않음.why?     pop은 인덱스로만 ! ! 
+           return arr     #2개미만                                             
+       else:
+           return [-1] 
