@@ -1,0 +1,20 @@
+
+def solution(s):
+   # bool을 이용해 홀,짝 구분
+   # 공백을 만나면 다시 True부터 시작하게 설정.
+   answer = ''
+   str_tmp = s.split(" ")
+   check = True
+   for i in s:
+       if i == " ":
+           check = True
+           answer+= " "
+           continue
+       if check == True:
+           answer += i.upper()
+           check = False
+       else :
+           answer += i.lower()
+           check = True
+  
+   return answer
