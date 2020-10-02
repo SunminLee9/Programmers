@@ -1,0 +1,13 @@
+def solution(d, budget):
+    answer = 0
+    d.sort()
+    
+    sum = 0
+    for i in d:
+        if sum + i <= budget:  #예산내에들어오면
+            sum += i           #해당 신청금액 sum
+            answer += 1         #지원부서수 +1
+        else:
+            break
+
+    return answer
